@@ -1,0 +1,10 @@
+aws budgets create-budget \
+    --account-id 706004250326 \
+    --budget file://aws/json/budget.json \
+    --notifications-with-subscribers file://aws/json/budget-notifications-with-subscribers.json
+
+
+aws sns subscribe \
+    --topic-arn "arn:aws:sns:us-east-1:706004250326:billing-alarm" \
+    --protocol email \
+    --notification-endpoint ohajekwepaul@gmail.com
