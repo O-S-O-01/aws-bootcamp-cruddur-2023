@@ -56,5 +56,10 @@
       "ghcr.io/devcontainers/features/docker-in-docker": {
         "moby": false
       }
-    }
+    },
+	"runArgs": [
+		"--init",
+		"-v", "/var/run/docker.sock:/var/run/docker.sock"
+	],
+	"remoteUser": "vscode"
 }
