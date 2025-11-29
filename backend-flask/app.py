@@ -26,6 +26,8 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExport
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
+
+
 # Export spans to Honeycomb
 honeycomb_exporter = OTLPSpanExporter(
     endpoint="https://api.honeycomb.io/v1/traces",
@@ -38,22 +40,24 @@ provider = TracerProvider()
 provider.add_span_processor(BatchSpanProcessor(honeycomb_exporter))
 provider.add_span_processor(SimpleSpanProcessor(ConsoleSpanExporter()))
 
+
+
 trace.set_tracer_provider(provider)
 tracer = trace.get_tracer(__name__)
 
-app = Flask(__name__)
 
-# X-Ray
-xray_url = os.getenv("AWS_XRAY_URL")
-xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
-XRayMiddleware(app, xray_recorder)
+app = Flask(__name__)
 
 # Honeycomb
 # Initialize automatic instrumentation with Flask
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
+# X-Ray________________________
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
 
-
+# __CORS Configuration ________
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
 origins = [frontend, backend]
@@ -167,3 +171,6 @@ def health_check():
 
 if __name__ == "__main__":
   app.run(debug=True)
+
+
+
