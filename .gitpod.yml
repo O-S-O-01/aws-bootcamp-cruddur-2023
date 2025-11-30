@@ -1,4 +1,8 @@
 tasks:
+  - name: setup-environment
+    init: |
+      cp .env.gitpod .env
+      echo "✅ Environment configured for Gitpod"
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
