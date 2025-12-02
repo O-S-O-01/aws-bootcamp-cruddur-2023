@@ -2,7 +2,8 @@
 .env
 .env.backup
 *.env.backup
-
+.env.local
+.env.gitpod
 # Python
 __pycache__/
 *.py[cod]
