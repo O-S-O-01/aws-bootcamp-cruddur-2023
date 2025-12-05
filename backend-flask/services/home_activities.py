@@ -7,7 +7,9 @@ tracer = trace.get_tracer("home.activities")
 
 class HomeActivities:
   def run():
-    LOGGER.info("HomeActivities")
+    # in the line above, the bracket is supposed to have "logger" as parameter
+    # in the line below, we disable logging to cloudwatch for this function
+    #logger.info("HomeActivities")THE #TAG IS TO DISABLE LOGGING FOR THIS LINE AND PREVENT SPEND ON AWS CLOUDWATCH
     with tracer.start_as_current_span("home-activities-mock-data"):
       now = datetime.now(timezone.utc).astimezone()
       results = [{

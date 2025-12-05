@@ -31,15 +31,17 @@ import watchtower
 import logging
 from time import strftime
 
+# CLOUDWATCH LOGGIN DISABLED FOR COST REASONS AT THE MOMENT
+#______________________________
 # Configuring Logger to Use CloudWatch
-LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.DEBUG)
-console_handler = logging.StreamHandler()
-cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
-LOGGER.addHandler(console_handler)
-LOGGER.addHandler(cw_handler)
-LOGGER.info("HomeActivities")
-
+# LOGGER = logging.getLogger(__name__)
+# LOGGER.setLevel(logging.DEBUG)
+# console_handler = logging.StreamHandler()
+# cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+# LOGGER.addHandler(console_handler)
+# LOGGER.addHandler(cw_handler)
+# LOGGER.info("test log")
+#______________________________
 
 # Export spans to Honeycomb
 honeycomb_exporter = OTLPSpanExporter(
@@ -65,10 +67,14 @@ app = Flask(__name__)
 # Initialize automatic instrumentation with Flask
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
+
 # X-Ray________________________
-xray_url = os.getenv("AWS_XRAY_URL")
-xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
-XRayMiddleware(app, xray_recorder)
+# xray_url = os.getenv("AWS_XRAY_URL")
+# xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
+# XRayMiddleware(app, xray_recorder)
+
+# XRAY DISABLED FOR COST REASONS AT THE MOMENT
+#______________________________
 
 # __CORS Configuration ________
 frontend = os.getenv('FRONTEND_URL')
@@ -82,12 +88,13 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 
-#cludwatch logging after request
-@app.after_request
-def after_request(response):
-    timestamp = strftime('[%Y-%b-%d %H:%M]')
-    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
-    return response
+#cludwatch logging after request DISABLED FOR COST REASONS AT THE MOMENT
+#______________________________
+# @app.after_request
+# def after_request(response):
+#    timestamp = strftime('[%Y-%b-%d %H:%M]')
+#    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+#    return response
 #______________________________   
         
 #__________API ROUTES ____________ 
