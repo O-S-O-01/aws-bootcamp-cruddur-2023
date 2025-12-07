@@ -230,7 +230,14 @@ def health_check():
 def rollbar_test():
     rollbar.report_message('Hello World!', 'warning')
     return "Hello World!"
-
+# Rollbar error route
+@app.route('/rollbar/error')
+def rollbar_error():
+    try:
+        1 / 0  # force a ZeroDivisionError
+    except Exception:
+        rollbar.report_exc_info()  # send exception to Rollbar
+    return "Error sent to Rollbar!"
 if __name__ == "__main__":
   app.run(debug=True)
 
