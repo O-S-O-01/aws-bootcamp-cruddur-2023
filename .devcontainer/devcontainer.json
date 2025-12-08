@@ -1,41 +1,41 @@
-// The Dev Container format allows you to configure your environment. At the heart of it
-// is a Docker image or Dockerfile which controls the tools available in your environment.
-//
-// See https://aka.ms/devcontainer.json for more information.
-// Note: Schema validation disabled due to network connectivity issues
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
 {
-	"name": "Ona",
-	// Use "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
-	// instead of the build to use a pre-built image.
-	"build": {
-        "context": ".",
-        "dockerfile": "Dockerfile"
-    },
+	"name": "cruddur configuration",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "backend-flask",
+
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {}
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"ms-python.isort",
-				"ms-python.black-formatter",
-				"ms-python.flake8",
-				"ms-python.autopep8",
-				"ms-python.pylint",
-				"ms-vscode-remote.remote-containers",
-				"ms-vscode-remote.vscode-remote-extensionpack"
+				"ms-azuretools.vscode-docker",
+				"AmazonWebServices.amazon-q-vscode",
+				"vscodevim.vim",
+				"ms-azuretools.vscode-containers",
+				"ms-python.python"
 			]
 		}
-	},
-	// Features add additional features to your environment. See https://containers.dev/features
-	// Beware: features are not supported on all platforms and may have unintended side-effects.
-	"features": {
-      "ghcr.io/devcontainers/features/docker-in-docker": {
-        "moby": false
-      }
-    },
-	"runArgs": [
-		"--init",
-		"-v", "/var/run/docker.sock:/var/run/docker.sock"
-	],
-	"remoteUser": "vscode"
+	}
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	
+	
+
+	
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
 }
