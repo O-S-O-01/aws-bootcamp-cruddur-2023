@@ -5,6 +5,12 @@
 		"ghcr.io/devcontainers/features/aws-cli:1": {},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
 	},
+
+	// add aws envs to devcontainer
+	"remoteEnv": {
+		"AWS_CLI_AUTO_PROMPT": "on-partial"
+	},
+
 	"customizations": {
 		"vscode": {
 			"extensions": [
