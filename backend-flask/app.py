@@ -78,11 +78,11 @@ FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 # X-Ray________________________
-# xray_url = os.getenv("AWS_XRAY_URL")
-# xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
-# XRayMiddleware(app, xray_recorder)
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
 
-# XRAY DISABLED FOR COST REASONS AT THE MOMENT
+# XRAY DISABLED FOR COST REASONS AT THE MOMENT redoo
 #______________________________
 
 # __CORS Configuration ________
