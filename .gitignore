@@ -4,6 +4,7 @@
 *.env.backup
 .env.local
 .env.gitpod
+.env.codespaces
 # Python
 __pycache__/
 *.py[cod]
