@@ -1,17 +1,22 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
+from aws_xray_sdk.core import xray_recorder
 import logging
 
 LOGGER = logging.getLogger(__name__)
 tracer = trace.get_tracer("home.activities")
 
 class HomeActivities:
+  @xray_recorder.capture('activities_home')
   def run():
     # in the line above, the bracket is supposed to have "logger" as parameter
     # in the line below, we disable logging to cloudwatch for this function
     #logger.info("HomeActivities")THE #TAG IS TO DISABLE LOGGING FOR THIS LINE AND PREVENT SPEND ON AWS CLOUDWATCH
     with tracer.start_as_current_span("home-activities-mock-data"):
+      subsegment = xray_recorder.begin_subsegment('mock_data_generation')
       now = datetime.now(timezone.utc).astimezone()
+      subsegment.put_metadata('user_count', 3)
+      xray_recorder.end_subsegment()
       results = [{
         'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
         'handle':  'Andrew Brown',
