@@ -27,13 +27,12 @@ services:
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
 
-    #setup for aws cognito___________
-      - REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
-      - REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      - REACT_APP_AWS_USER_POOLS_ID: "ca-central-1_LXSaR3TPY"
-      - REACT_APP_CLIENT_ID: "24cagel1ekc0ds2hpkgd8dv39o"
-        #__________________________________
-
+# AWS Cognito Environment Variables
+      - REACT_APP_AWS_PROJECT_REGION=${AWS_DEFAULT_REGION}
+      - REACT_APP_AWS_COGNITO_REGION=${AWS_DEFAULT_REGION}
+      - REACT_APP_AWS_USER_POOLS_ID=${AWS_USER_POOLS_ID}
+      - REACT_APP_CLIENT_ID=${AWS_CLIENT_ID}
+# End AWS Cognito Environment Variables
     build: ./frontend-react-js
     ports:
       - "3000:3000"
