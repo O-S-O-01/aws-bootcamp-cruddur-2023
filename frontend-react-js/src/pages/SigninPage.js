@@ -12,27 +12,31 @@ export default function SigninPage() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
+  const [loading, setLoading] = React.useState(false); 
 
   const onsubmit = async (event) => {
-     setErrors('')
+     
+     console.log()
      event.preventDefault();
-     try {
-       Auth.signIn(email, password)
-          .then(user => {
-            localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
-            window.location.href = "/"
-       })
-      .catch(err => { console.log('Error!', err) });
-  } catch (error) {
-    if (error.code == 'UserNotConfirmedException') {
-      window.location.href = "/confirm"
+
+       // ✅ BLOCK multiple clicks
+    if (loading) return;
+    setErrors('')
+     setLoading(true);
+      Auth.signIn(email, password)
+      .then(user => {
+        localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
+        window.location.href = "/"
+      })
+      .catch(error => { 
+        if (error.code == 'UserNotConfirmedException') {
+          window.location.href = "/confirm"
+        }
+        setErrors(error.message)
+         setLoading(false); // ✅ STOP loading
+      });
+      return false
     }
-    setErrors(error.message)
-  }
-  return false
-}
-
-
 
   const email_onchange = (event) => {
     setEmail(event.target.value);
@@ -72,13 +76,20 @@ export default function SigninPage() {
                 type="password"
                 value={password}
                 onChange={password_onchange} 
+                disabled={loading} 
               />
             </div>
           </div>
           {el_errors}
+
           <div className='submit'>
             <Link to="/forgot" className="forgot-link">Forgot Password?</Link>
-            <button type='submit'>Sign In</button>
+            <button
+              type='submit'
+              disabled={loading}
+            >
+              {loading ? "Signing in..." : "Sign In"}
+            </button>
           </div>
 
         </form>
