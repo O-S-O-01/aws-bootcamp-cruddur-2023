@@ -5,6 +5,6 @@ main, article {
 
 .content {
   width: 600px;
-  height: 100%;
-  background: #000;
+  height: 150%;
+  background: #1d1f1e;
 }
