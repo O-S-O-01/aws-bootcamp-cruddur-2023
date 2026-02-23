@@ -21,7 +21,8 @@
 				"AmazonWebServices.amazon-q-vscode",
 				"vscodevim.vim",
 				"ms-azuretools.vscode-containers",
-				"ms-python.python"
+				"ms-python.python",
+				"cweijan.vscode-postgresql-client2"
 			]
 		}
 	}

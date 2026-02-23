@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #42a5f5;
+  --secondary-color: #ab47bc;
+  --background-color: #f5f5f5;
+  --text-color: #212121;
+}
+
 * { box-sizing: border-box; }
 html,body { 
   height: 100%; 
