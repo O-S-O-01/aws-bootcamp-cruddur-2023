@@ -1,6 +1,7 @@
 services:
   backend-flask:
     environment:
+      - CONNECTION_URL=${CONNECTION_URL}
       - FRONTEND_URL=${FRONTEND_URL}
       - BACKEND_URL=${BACKEND_URL}
       - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY:-}
