@@ -57,8 +57,9 @@ services:
     image: postgres:13-alpine
     restart: always
     environment:
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=qwest
       - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=cruddur
     ports:
       - '5432:5432'
     volumes: 

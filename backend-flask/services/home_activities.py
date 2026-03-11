@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
 from aws_xray_sdk.core import xray_recorder
-from lib.db import pool
+from lib.db import pool,query_wrap_array
 import logging
 
 LOGGER = logging.getLogger(__name__)
@@ -19,13 +19,14 @@ class HomeActivities:
       subsegment.put_metadata('user_count', 3)
       xray_recorder.end_subsegment()
 
-      sql = """
+      sql = query_wrap_array("""
       SELECT * FROM activities
-      """
+      """)
       with pool.connection() as conn:
         with conn.cursor() as cur:
           cur.execute(sql)
           # this will return a tuple
           # the first field being the data
-          json = cur.fetchall()
+          json = cur.fetchone()
+          
       return json[0]
