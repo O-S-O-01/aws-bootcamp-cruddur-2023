@@ -11,7 +11,7 @@ This week was focused on laying the foundation for cruddur application,the gol w
 - [x] successfully installed and authenticated the AWS CLI within my local WSL environment
 - [X] configured a cloudwatch billing alarm to trigger an email at a $0.2 threshold using this
 
- '''{
+'''{
     "AlarmName": "DailyEstimatedChargesforawsbootcampcruddur_followalong",
     "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 0.2$",
     "ActionsEnabled": true,
@@ -49,7 +49,7 @@ This week was focused on laying the foundation for cruddur application,the gol w
 
 - [x] created an AS budget using the installed AWS CLI 
 
-    '''{
+'''{
     "BudgetLimit": {
         "Amount": "2",
         "Unit": "USD"
