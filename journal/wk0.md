@@ -8,8 +8,9 @@ This week was focused on laying the foundation for cruddur application,the gol w
 
 - [x] created a fresh AWS account and enabled MFA on the root and IAM user
 - [x] created an IAM user with admin access and generated AWS credentials
-- [x]successfully installed and authenticated the AWS CLI within my local WSL environment
-- [X] configured a cloudwatch billing alarm to trigger an email at a $0.2 threshold using this 
+- [x] successfully installed and authenticated the AWS CLI within my local WSL environment
+- [X] configured a cloudwatch billing alarm to trigger an email at a $0.2 threshold using this
+
  '''{
     "AlarmName": "DailyEstimatedChargesforawsbootcampcruddur_followalong",
     "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 0.2$",
@@ -47,6 +48,7 @@ This week was focused on laying the foundation for cruddur application,the gol w
 }'''
 
 -[x] created an AS budget using the installed AWS CLI 
+
     '''{
     "BudgetLimit": {
         "Amount": "2",
@@ -78,6 +80,7 @@ This week was focused on laying the foundation for cruddur application,the gol w
     },
     "TimeUnit": "MONTHLY"
 }'''
+
 ---
 ***TECHNICAL CHALLENGES AND PERSONAL SOLUTION***
 
