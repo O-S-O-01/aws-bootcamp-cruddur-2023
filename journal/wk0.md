@@ -11,9 +11,7 @@ This week was focused on laying the foundation for cruddur application,the gol w
 - [x] successfully installed and authenticated the AWS CLI within my local WSL environment
 - [X] configured a cloudwatch billing alarm to trigger an email at a $0.2 threshold using this
 
-
- '''
-  {
+ '''{
     "AlarmName": "DailyEstimatedChargesforawsbootcampcruddur_followalong",
     "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 0.2$",
     "ActionsEnabled": true,
@@ -47,13 +45,11 @@ This week was focused on laying the foundation for cruddur application,the gol w
         "Label": "DailyEstimatedCharges",
         "ReturnData": true
     }]
-}
-     '''
+}'''
 
--[x] created an AS budget using the installed AWS CLI 
+- [x] created an AS budget using the installed AWS CLI 
 
-    '''
-    {
+    '''{
     "BudgetLimit": {
         "Amount": "2",
         "Unit": "USD"
@@ -83,8 +79,7 @@ This week was focused on laying the foundation for cruddur application,the gol w
         "End": 3706473600
     },
     "TimeUnit": "MONTHLY"
-}
-'''
+}'''
 
 ---
 ***TECHNICAL CHALLENGES AND PERSONAL SOLUTION***
@@ -104,5 +99,5 @@ This week was focused on laying the foundation for cruddur application,the gol w
     - i addopted the .env pattern, a .env file in my project root to store sensitive credential using a git guardrail by creating a gitignore file and explicitly added a .env to the exclusion list. this ensured that my credential remained strictly local to my machine and were never tracked by version control
     
     - i configured my application to load environment variables from the .env file at runtime, this allowed me to access AWS credentials securely within my application without hardcoding them into the source code
-    
+
 *challenge 4* one of the requirement was to create the application logical architecture in lucidchart, i found it confusing so i skipped 
