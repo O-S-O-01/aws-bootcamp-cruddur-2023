@@ -378,7 +378,7 @@ When contributing to this repository:
 
 ## 📋 Journaling Homework
 
-The `/journal` directory contains weekly homework documentation:
+The `/original bootcamp journal` directory contains weekly homework documentation:
 
 - [ ] [Week 0](journal/week00.md)
 - [ ] [Week 1](journal/week01.md)
