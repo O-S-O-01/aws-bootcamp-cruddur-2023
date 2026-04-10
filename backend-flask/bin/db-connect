@@ -1,3 +1,13 @@
 #!/usr/bin/bash
 
-psql $CONNECTION_URL
+if [ "$1" == "prod" ]; then
+    echo "running in production mode"
+    CON_URL=$PROD_CONNECTION_URL
+else
+    echo "running in local mode"
+    CON_URL=$CONNECTION_URL
+fi
+
+echo "Using connection URL: $CON_URL"
+
+psql "$CON_URL"
