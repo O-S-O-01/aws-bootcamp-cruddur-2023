@@ -1,11 +1,28 @@
 import uuid
 from datetime import datetime, timedelta, timezone
+
+#from lib.db import db
+
 class CreateActivity:
   def run(message, user_handle, ttl):
     model = {
       'errors': None,
       'data': None
     }
+
+    user_uuid = ''
+    sql = """
+      INSERT INTO (
+      use_uuid
+      message
+      expires_at
+      )
+      VALUES (
+      "{user_uuid}"
+      "{message}"
+      "{expires_at}"
+      )
+    """
 
     now = datetime.now(timezone.utc).astimezone()
 
@@ -40,6 +57,7 @@ class CreateActivity:
         'message': message
       }   
     else:
+      self.create_activity
       model['data'] = {
         'uuid': uuid.uuid4(),
         'display_name': 'Andrew Brown',
@@ -49,3 +67,19 @@ class CreateActivity:
         'expires_at': (now + ttl_offset).isoformat()
       }
     return model
+  def create_activity(self, user_uuid, message, expires_at):
+    sql = """
+      INSERT INTO (
+      use_uuid
+      message
+      expires_at
+      )
+      VALUES (
+      "{user_uuid}"
+      "{message}"
+      "{expires_at}"
+      )
+    """
+    #query_commit(sql)
+    
+    
