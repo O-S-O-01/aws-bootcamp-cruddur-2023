@@ -18,7 +18,7 @@ class HomeActivities:
       now = datetime.now(timezone.utc).astimezone()
       subsegment.put_metadata('user_count', 3)
       xray_recorder.end_subsegment()
-
+      sql = db.template('home')
       results = db.query_array_json("""
         SELECT
           activities.uuid,
