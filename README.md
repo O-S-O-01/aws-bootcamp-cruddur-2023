@@ -78,7 +78,7 @@ aws-bootcamp-cruddur-2023/
 
 ## 📋 Journaling Homework
 
-The `/original bootcamp journal` directory contains weekly homework documentation:
+The `/original_bootcamp_journal` directory contains weekly homework documentation:
 
 - [ ] [Week 0](journal/week00.md)
 - [ ] [Week 1](journal/week01.md)
