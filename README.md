@@ -13,44 +13,6 @@ This is the codebase for the FREE AWS Cloud Project Bootcamp 2023. This reposito
 
 ---
 
-## 🚀 Quick Start
-
-### Running in Gitpod (Recommended for Beginners)
-
-1. **Open in Gitpod**: Click the Gitpod button or open this repository in Gitpod
-2. **Wait for setup**: The environment will automatically configure itself
-3. **Start the application**:
-   ```bash
-   docker-compose up -d
-   ```
-4. **Access the app**: Gitpod will provide URLs for:
-   - Frontend: `https://3000--<your-environment-id>.gitpod.dev`
-   - Backend API: `https://4567--<your-environment-id>.gitpod.dev`
-
-### Running Locally (Desktop/Laptop)
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/aws-bootcamp-cruddur-2023.git
-   cd aws-bootcamp-cruddur-2023
-   ```
-
-2. **Copy local environment configuration**:
-   ```bash
-   cp .env.local .env
-   ```
-
-3. **Start the application**:
-   ```bash
-   docker-compose up -d
-   ```
-
-4. **Access the app**:
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:4567
-
----
-
 ## Recent Configuration Changes
 
 This repository has been updated to work in both Gitpod and local environments. Here's what changed and why:
@@ -134,18 +96,5 @@ The `/original bootcamp journal` directory contains weekly homework documentatio
 - [ ] [Week 13](journal/week13.md)
 
 ---
-
-## 📞 Getting Help
-
-If you encounter issues:
-
-1. Check [SETUP.md](SETUP.md) for detailed troubleshooting
-2. Review the error messages in `docker-compose logs`
-3. Verify your `.env` file matches your environment
-4. Check that all services are running with `docker-compose ps`
-
----
-
-## 📄 License
 
 This project is part of the FREE AWS Cloud Project Bootcamp 2023.
