@@ -92,3 +92,25 @@ def rollbar_error():
 ### Challenge 6: "Short Read" Image Build Failures
 I encountered `short read: expected 51600110 bytes but got 23085056: unexpected EOF` during the Docker build process.
 - ***My Solution:*** I realized this was due to an unstable internet connection dropping mid-download. I re-established my connection and rebuilt the images, allowing Docker to resume from the cached layers.
+
+---
+# this were the content of my .env file at this point
+
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:4567
+REACT_APP_BACKEND_URL=http://localhost:4567
+AWS_XRAY_URL=*localhost:4567*
+
+### AWS Configuration
+AWS_ACCESS_KEY_ID=XXXXXXX
+AWS_SECRET_ACCESS_KEY=XXXX
+AWS_REGION=ca-central-1
+AWS_DEFAULT_REGION=ca-central-1
+
+### Honeycomb Configuration
+HONEYCOMB_API_KEY=XXXXXXXX
+HONEYCOMB_DATASET=cruddur
+SERVICE_NAME=backend-flask
+
+# Rollbar Configuration
+ROLLBAR_ACCESS_TOKEN=XXXXX

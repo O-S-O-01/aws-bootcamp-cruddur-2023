@@ -105,3 +105,13 @@ This week was focused on laying the foundation for cruddur application,the gol w
     - i configured my application to load environment variables from the .env file at runtime, this allowed me to access AWS credentials securely within my application without hardcoding them into the source code
 
 *challenge 4:* one of the requirement was to create the application logical architecture in lucidchart, i found it confusing so i skipped 
+
+# this were the content of my .env file at this point
+
+### AWS Configuration
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=
+AWS_DEFAULT_REGION=
+
+I ALSO EXPORTED THEM TO THE TERMINAL 

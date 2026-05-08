@@ -35,3 +35,35 @@ The frontend container would occasionally crash with a `SIGTERM` during `react-s
 ### Challenge 6: X-Ray Timeout Errors
 I saw `Sending segment batch failed ... Client.Timeout exceeded` in the logs.
 - ***My Solution:*** I identified that the X-Ray daemon was having intermittent trouble reaching the AWS regional endpoint from my local network. Since this was for local development and didn't crash the app, I proceeded with the knowledge that this would be more stable once deployed to an AWS VPC.
+
+---
+# this were the content of my .env file at this point
+
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:4567
+REACT_APP_BACKEND_URL=http://localhost:4567
+AWS_XRAY_URL=*localhost:4567*
+
+### AWS Configuration
+AWS_ACCESS_KEY_ID=XXXXXXX
+AWS_SECRET_ACCESS_KEY=XXXX
+AWS_REGION=ca-central-1
+AWS_DEFAULT_REGION=ca-central-1
+
+### Honeycomb Configuration
+HONEYCOMB_API_KEY=XXXXXXXX
+HONEYCOMB_DATASET=cruddur
+SERVICE_NAME=backend-flask
+
+### Rollbar Configuration
+ROLLBAR_ACCESS_TOKEN=XXXXX
+
+### AWS Cognito Configuration
+AWS_COGNITO_USER_POOL_ID=ca-central-1_yyyy
+AWS_COGNITO_USER_POOL_CLIENT_ID=zzzz
+AWS_USER_POOLS_ID=ca-central-1_yyyy
+AWS_CLIENT_ID=zzzz
+REACT_APP_AWS_USER_POOLS_ID=ca-central-1_yyyy
+REACT_APP_CLIENT_ID=zzzz
+
+

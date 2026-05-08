@@ -121,3 +121,16 @@ Getting containers to talk to each other while also being accessible from the WS
 ### Challenge 5: I WAS NOT USING GITPOD/ONA 
 Since I decided to build in a local environment rather than using Gitpod, I switched to using Docker Desktop on my personal machine. However, I started experiencing performance issues, VS Code would freeze and occasionally crash due to high resource usage and limited storage space.
 - **My Solution:** To resolve this, I reconfigured Docker Desktop to use an external hard drive for its storage. This helped free up space on my system and significantly improved overall performance and stability.
+---
+# this were the content of my .env file at this point
+
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:4567
+REACT_APP_BACKEND_URL=http://localhost:4567
+### AWS Configuration
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=
+AWS_DEFAULT_REGION=
+
+I ALSO EXPORTED THEM TO THE TERMINAL 
