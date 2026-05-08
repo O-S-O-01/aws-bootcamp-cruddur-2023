@@ -15,7 +15,7 @@ The primary focus of this week was implementing observability and distributed tr
 
 ### Challenge 1: Lack of Local Visibility for Traces
 The default OpenTelemetry setup only sends data to Honeycomb. If the network fails, I wouldn't see anything.
-**My Solution:** I updated `app.py` to include `ConsoleSpanExporter` and `SimpleSpanProcessor`. This allowed me to see the raw spans in my Docker logs immediately, while still sending the batched data to Honeycomb.changing this 
+- ***My Solution:*** I updated `app.py` to include `ConsoleSpanExporter` and `SimpleSpanProcessor`. This allowed me to see the raw spans in my Docker logs immediately, while still sending the batched data to Honeycomb.changing this 
 ```py
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
@@ -55,7 +55,7 @@ tracer = trace.get_tracer(__name__)
 
 ### Challenge 2: Honeycomb Endpoint and Header Formatting
 Using the base Honeycomb URL often fails in Python OTLP exporters.
-**My Solution:** I updated the `docker-compose.yml` environment variables to use the explicit `/v1/traces` endpoint: `https://honeycomb.io`. I also added shell defaults `${HONEYCOMB_API_KEY:-}` to prevent the container from crashing if the key is missing.this was done by changing this 
+- ***My Solution:*** I updated the `docker-compose.yml` environment variables to use the explicit `/v1/traces` endpoint: `https://honeycomb.io`. I also added shell defaults `${HONEYCOMB_API_KEY:-}` to prevent the container from crashing if the key is missing.this was done by changing this 
 ```yml
 OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
 OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
@@ -70,16 +70,16 @@ to this
 
 ### Challenge 3: Portability Across Gitpod, Codespaces, and Local
 I wanted my setup to work anywhere (Gitpod, GitHub Codespaces, or local) without manually installing tools every time.
-**My Solution:** I created a `.devcontainer/devcontainer.json` file. I explicitly added "features" for **Node 18**, **AWS-CLI**, and **Docker-in-Docker**. This fixed the "npm command not found" error I hit on Gitpod and ensured that whether I'm in the cloud or on my desktop, the environment is identical.
+- ***My Solution:*** I created a `.devcontainer/devcontainer.json` file. I explicitly added "features" for **Node 18**, **AWS-CLI**, and          **Docker-in-Docker**. This fixed the "npm command not found" error I hit on Gitpod and ensured that whether I'm in the cloud or on my desktop, the environment is identical.
 
 ### Challenge 4: Flask 3.x Breaking Changes (`before_first_request`)
 During `pip install`, Docker fetched Flask 3.x, which removed the `before_first_request` method used by Rollbar and the bootcamp code, causing the backend to crash with an `AttributeError`.
-**My Solution:** I identified that the code was written for Flask 2.2. I modified `requirements.txt` to hard-code `Flask==2.2.5`. This resolved the crash and restored the functionality of the Rollbar initialization decorators.
+- ***My Solution:*** I identified that the code was written for Flask 2.2. I modified `requirements.txt` to hard-code `Flask==2.2.5`. This resolved the crash and restored the functionality of the Rollbar initialization decorators.
 
 ### Challenge 5: Testing Rollbar with Missing Routes
 I tried to test Rollbar using `/rollbar/error` but kept getting a 404 because that route didn't exist in the provided bootcamp code.
-**My Solution:** I manually defined the route in `app.py` and implemented a `try/except` block with a `1 / 0` (ZeroDivisionError) to force a real exception. This confirmed that `rollbar.report_exc_info()` was correctly capturing and sending real errors to the dashboard.
+- ***My Solution:*** I manually defined the route in `app.py` and implemented a `try/except` block with a `1 / 0` (ZeroDivisionError) to force a real exception. This confirmed that `rollbar.report_exc_info()` was correctly capturing and sending real errors to the dashboard.
 
 ### Challenge 6: "Short Read" Image Build Failures
 I encountered `short read: expected 51600110 bytes but got 23085056: unexpected EOF` during the Docker build process.
-**My Solution:** I realized this was due to an unstable internet connection dropping mid-download. I re-established my connection and rebuilt the images, allowing Docker to resume from the cached layers.
+- ***My Solution:*** I realized this was due to an unstable internet connection dropping mid-download. I re-established my connection and rebuilt the images, allowing Docker to resume from the cached layers.
