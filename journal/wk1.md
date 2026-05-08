@@ -125,12 +125,19 @@ Since I decided to build in a local environment rather than using Gitpod, I swit
 # this were the content of my .env file at this point
 
 FRONTEND_URL=http://localhost:3000
+
 BACKEND_URL=http://localhost:4567
+
 REACT_APP_BACKEND_URL=http://localhost:4567
+
 ### AWS Configuration
+
 AWS_ACCESS_KEY_ID=
+
 AWS_SECRET_ACCESS_KEY=
+
 AWS_REGION=
+
 AWS_DEFAULT_REGION=
 
 I ALSO EXPORTED THEM TO THE TERMINAL 
