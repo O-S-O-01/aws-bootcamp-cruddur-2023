@@ -37,7 +37,7 @@ I saw `Sending segment batch failed ... Client.Timeout exceeded` in the logs.
 - ***My Solution:*** I identified that the X-Ray daemon was having intermittent trouble reaching the AWS regional endpoint from my local network. Since this was for local development and didn't crash the app, I proceeded with the knowledge that this would be more stable once deployed to an AWS VPC.
 
 ---
-# this were the content of my .env file at this point
+### this were the content of my .env file at this point
 
 FRONTEND_URL=http://localhost:3000
 BACKEND_URL=http://localhost:4567
