@@ -78,8 +78,17 @@ During `pip install`, Docker fetched Flask 3.x, which removed the `before_first_
 
 ### Challenge 5: Testing Rollbar with Missing Routes
 I tried to test Rollbar using `/rollbar/error` but kept getting a 404 because that route didn't exist in the provided bootcamp code.
-- ***My Solution:*** I manually defined the route in `app.py` and implemented a `try/except` block with a `1 / 0` (ZeroDivisionError) to force a real exception. This confirmed that `rollbar.report_exc_info()` was correctly capturing and sending real errors to the dashboard.
+- ***My Solution:*** I manually defined the route in `app.py` and implemented a `try/except` block with a `1 / 0` (ZeroDivisionError) to force a real exception. This confirmed that `rollbar.report_exc_info()` was correctly capturing and sending real errors to the dashboard. this was done by doing this to `backend-flask/app.py` file
 
+```
+@app.route('/rollbar/error')
+def rollbar_error():
+    try:
+        1 / 0  # force a ZeroDivisionError
+    except Exception:
+        rollbar.report_exc_info()  # send exception to Rollbar
+    return "Error sent to Rollbar!"
+```
 ### Challenge 6: "Short Read" Image Build Failures
 I encountered `short read: expected 51600110 bytes but got 23085056: unexpected EOF` during the Docker build process.
 - ***My Solution:*** I realized this was due to an unstable internet connection dropping mid-download. I re-established my connection and rebuilt the images, allowing Docker to resume from the cached layers.
