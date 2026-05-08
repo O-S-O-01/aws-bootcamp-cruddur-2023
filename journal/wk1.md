@@ -37,7 +37,62 @@ CMD ["npm", "start"]
 ```
  for the React application, ensuring `npm install` was handled correctly before and within the build process.
 
-- [x] ***Orchestrated Microservices:*** Developed a `docker-compose.yml` file at the project root file to manage the multi-container setup, including the frontend, backend, and internal networking.
+- [x] ***Orchestrated Microservices:*** Developed a `docker-compose.yml` file at the project root file to manage the multi-container setup, including the frontend, backend, and internal networking. changing it from 
+```yaml
+version: "3.8"
+services:
+  backend-flask:
+    environment:
+      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+    build: ./backend-flask
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./backend-flask:/backend-flask
+  frontend-react-js:
+    environment:
+      REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+    build: ./frontend-react-js
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend-react-js:/frontend-react-js
+```
+to this
+```yaml
+services:
+    backend-flask:
+        environment:
+            - FRONTEND_URL=${FRONTEND_URL}
+            - BACKEND_URL=${BACKEND_URL}
+        env_file:
+            - .env
+        build: ./backend-flask
+        ports:
+            - "4567:4567"
+        volumes:
+            - ./backend-flask:/backend-flask
+        networks:
+            - internal-network
+    frontend-react-js:
+        environment:
+            - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
+        build: ./frontend-react-js
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./frontend-react-js:/frontend-react-js
+   
+```
+    while i added this in my .env file
+    
+```yaml
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:4567
+REACT_APP_BACKEND_URL=http://localhost:4567
+```
+
 - [x] ***Local Database Integration:*** Added **Postgres** and **DynamoDB Local** to the Docker Compose configuration to allow for local data persistence and offline development.
 - [x] ***Verified Connectivity:*** Successfully used `curl` and browser testing to verify that the backend API was returning JSON data at the `/api/activities/home` endpoint.using 
 ```sh
