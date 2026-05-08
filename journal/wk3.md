@@ -40,30 +40,47 @@ I saw `Sending segment batch failed ... Client.Timeout exceeded` in the logs.
 ### this were the content of my .env file at this point
 
 FRONTEND_URL=http://localhost:3000
+
 BACKEND_URL=http://localhost:4567
+
 REACT_APP_BACKEND_URL=http://localhost:4567
+
 AWS_XRAY_URL=*localhost:4567*
 
-### AWS Configuration
+#### AWS Configuration
+
 AWS_ACCESS_KEY_ID=XXXXXXX
+
 AWS_SECRET_ACCESS_KEY=XXXX
+
 AWS_REGION=ca-central-1
+
 AWS_DEFAULT_REGION=ca-central-1
 
-### Honeycomb Configuration
+#### Honeycomb Configuration
+
 HONEYCOMB_API_KEY=XXXXXXXX
+
 HONEYCOMB_DATASET=cruddur
+
 SERVICE_NAME=backend-flask
 
-### Rollbar Configuration
+#### Rollbar Configuration
+
 ROLLBAR_ACCESS_TOKEN=XXXXX
 
-### AWS Cognito Configuration
+#### AWS Cognito Configuration
+
 AWS_COGNITO_USER_POOL_ID=ca-central-1_yyyy
+
 AWS_COGNITO_USER_POOL_CLIENT_ID=zzzz
+
 AWS_USER_POOLS_ID=ca-central-1_yyyy
+
 AWS_CLIENT_ID=zzzz
+
 REACT_APP_AWS_USER_POOLS_ID=ca-central-1_yyyy
+
 REACT_APP_CLIENT_ID=zzzz
 
 

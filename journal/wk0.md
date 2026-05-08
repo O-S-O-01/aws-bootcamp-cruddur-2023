@@ -107,9 +107,9 @@ This week was focused on laying the foundation for cruddur application,the gol w
 *challenge 4:* one of the requirement was to create the application logical architecture in lucidchart, i found it confusing so i skipped 
 ---
 
-# this were the content of my .env file at this point
+### this were the content of my .env file at this point
 
-### AWS Configuration
+#### AWS Configuration
 
 AWS_ACCESS_KEY_ID=
 
