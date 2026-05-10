@@ -93,6 +93,47 @@ def rollbar_error():
 I encountered `short read: expected 51600110 bytes but got 23085056: unexpected EOF` during the Docker build process.
 - ***My Solution:*** I realized this was due to an unstable internet connection dropping mid-download. I re-established my connection and rebuilt the images, allowing Docker to resume from the cached layers.
 
+### Challenge 7: X-Ray Traces Stopping After Initial Success
+After the first few traces were sent to AWS X-Ray, the daemon logs showed no new activity:
+```
+xray-daemon-1 | [Info] Successfully sent batch of 1 segments (1.131 seconds)
+xray-daemon-1 | [Info] Successfully sent batch of 1 segments (0.311 seconds)
+# ... nothing after this
+```
+- ***My Solution:*** X-Ray is not a continuous monitoring tool. It only sends data when an actual API request hits the backend. No request = no trace. The daemon was working perfectly, it was just waiting for something to trace. I added `@xray_recorder.capture()` decorators to the service functions so X-Ray had more to trace, then made API requests to generate activity:
+
+```python
+# home_activities.py
+from aws_xray_sdk.core import xray_recorder
+
+class HomeActivities:
+  @xray_recorder.capture('activities_home')
+  def run():
+```
+
+```python
+# notifications_activities.py
+from aws_xray_sdk.core import xray_recorder
+
+class NotificationsActivities:
+  @xray_recorder.capture('activities_notifications')
+  def run():
+```
+
+```python
+# app.py
+@app.route("/api/health-check", methods=["GET"])
+@xray_recorder.capture('health_check')
+def health_check():
+```
+
+After making requests to the endpoints, the daemon confirmed traces were being sent:
+```
+xray-daemon-1 | [Info] Successfully sent batch of 1 segments (0.352 seconds)
+xray-daemon-1 | [Info] Successfully sent batch of 1 segments (0.280 seconds)
+xray-daemon-1 | [Info] Successfully sent batch of 1 segments (0.335 seconds)
+```
+
 ---
 ### this were the content of my .env file at this point
 

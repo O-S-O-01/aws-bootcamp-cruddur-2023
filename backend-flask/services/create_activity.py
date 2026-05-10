@@ -63,9 +63,10 @@ class CreateActivity:
       model['data'] = object_json
     return model
 
-  def create_activity(handle, message, expires_at):
+  def create_activity( user_uuid,handle, message, expires_at):
     sql = db.template('create_activity')
     activity_uuid = db.query_commit(sql, {
+      'user_uuid': user_uuid,
       'handle': handle,
       'message': message,
       'expires_at': expires_at
