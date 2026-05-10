@@ -50,7 +50,7 @@ docker-compose.yml.backup
 # AWS CLI Installation
 aws/
 awscliv2.zip
-
+a.txt
 # OS
 .DS_Store
 Thumbs.db
