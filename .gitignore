@@ -54,3 +54,5 @@ a.txt
 # OS
 .DS_Store
 Thumbs.db
+.42c/
+.venv/
