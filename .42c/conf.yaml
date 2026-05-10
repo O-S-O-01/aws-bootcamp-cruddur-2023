@@ -1,3 +1,0 @@
-apis:
-  backend-flask/openapi-3.0.yml:
-    alias: cruddur-backend-api
