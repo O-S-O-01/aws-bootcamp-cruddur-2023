@@ -57,3 +57,6 @@ a.txt
 Thumbs.db
 .42c/
 .venv/
+
+Pipfile
+Pipfile.lock
