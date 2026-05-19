@@ -51,6 +51,7 @@ docker-compose.yml.backup
 aws/
 awscliv2.zip
 a.txt
+
 # OS
 .DS_Store
 Thumbs.db

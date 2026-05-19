@@ -121,4 +121,4 @@ DB_SG_ID="xxxx"
 DB_SG_RULE_ID="xxxx"
 
 #### to view my ip use curl ifconfig.me
-MY_IP=197.211.63.104
+MY_IP=xxx.xxx.x.x
